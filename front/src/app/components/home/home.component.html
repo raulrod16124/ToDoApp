@@ -1,0 +1,75 @@
+<main class="main">
+
+    <a class="btn1 btnExit" routerLink="/">Exit</a>
+
+    <div class="content-header">
+
+        <h1 class="title1"><i class="fas fa-tasks"></i> Manage your tasks</h1>
+
+        <div class="dataInputs">
+            <div class="content-input">
+                <label for="owner">Owner of task</label>
+                <input type="text" name="owner" class="ownerTask"  [(ngModel)]="newOwner" placeholder="Owner name">
+            </div>
+
+            <div class="content-input">
+                <label for="title">Title of task</label>
+                <input type="text" name="title" class="titleTask" [(ngModel)]="newTitle" placeholder="Title">
+            </div>
+
+            
+        </div>
+        
+        <div class="content-header-footer">
+            <button type="submit" class="btn1 btnSubmit" (click)="postTask(newTitle, newOwner)">Save</button>
+            <!-- <p class="dataTasks">All tasks: <span [innerHtml]="alltasks"></span></p>
+            <p class="dataTasks">Tasks finished: <span [innerHtml]="taskChecked"></span></p>
+            <p class="dataTasks">Tasks pending: <span [innerHtml]="taskPending"></span></p> -->
+            <p class="message" [innerHtml]="phrase"></p>
+        </div>
+
+
+    </div>
+
+
+    <div class="content-data">
+
+        <div class="content-btns">
+
+            <button class="btn1 btnDelete" type="button" (click)="showMessage()">Delete all tasks</button>
+
+            <div class="messageDelete">
+                <h3>Are you sure to delete all tasks?</h3>
+                <button class="btn1 btnUpdate" (click)="showMessage()">No, cancel</button>
+                <button class="btn1 btnDelete" (click)="deleteAll()">Yes, delete all</button>
+            </div>
+
+            <button class="btn1" type="button" (click)="filterTaskChecked()">Filter by checked</button>
+            <button class="btn1" type="button" (click)="filterTaskPending()">Filter by pending</button>
+
+            <div class="content-filterByUser">
+
+                <input type="text" class="filterOwner" [(ngModel)]="filterOwner" placeholder="Write an owner">
+                <button class="btn1" type="button" (click)="filterTask(filterOwner)">Filter by Owner</button>
+
+            </div>
+
+            <button class="btn1 btnUpdate" type="button" (click)="showAllTasks()">Update tasks</button>
+
+        </div>
+
+        <div class="task" [ngClass]="{ 'taskCheck' : task.completed === true }" *ngFor="let task of tasksFilter">
+
+            <p (click)="checkTask(task.id)"><i class="far fa-check-square"></i></p>
+            <p>id: {{task.id}}</p>
+            <p>{{task.title}}.</p>
+            <p>Created by: {{task.owner}}</p>
+            <p (click)="deleteTask(task.id)"><i class="fas fa-trash-alt"></i></p> 
+
+        </div>
+
+    </div>
+
+
+
+</main>
