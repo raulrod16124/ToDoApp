@@ -60,11 +60,17 @@
 
         <div class="task" [ngClass]="{ 'taskCheck' : task.completed === true }" *ngFor="let task of tasksFilter">
 
-            <p (click)="checkTask(task.id)"><i class="far fa-check-square"></i></p>
-            <p>id: {{task.id}}</p>
+            <div class="contentOne d-flex justify-content-between mr-3">
+                <p (click)="checkTask(task.id)"><i class="far fa-check-square"></i></p>
+                <p>id: {{task.id}}</p>
+            </div>
+
             <p>{{task.title}}.</p>
-            <p>Created by: {{task.owner}}</p>
-            <p (click)="deleteTask(task.id)"><i class="fas fa-trash-alt"></i></p> 
+
+            <div class="contentTwo d-flex justify-content-between">
+                <p>Created by: {{task.owner}}</p>
+                <p (click)="deleteTask(task.id)"><i class="fas fa-trash-alt"></i></p> 
+            </div>
 
         </div>
 
