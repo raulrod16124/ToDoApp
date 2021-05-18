@@ -7,7 +7,7 @@ mongoose.connect('mongodb://localhost/todos');
 
 // Created Server
 const server = express();
-// Middelware ( o algo asi )
+// Middelware
 server.use( express.json() );
 
 
